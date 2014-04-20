@@ -7,10 +7,7 @@ class UsersController < ApplicationController
     # ZeroPush expects a hash as a notification
     notification = {
       device_tokens: ["55fabe83690cee527888ef7e76fa9783c3c998b1552937e6b536544ec043759e"],
-      alert: "Hi Vivian!!",
-      content_available: 1,
-      sound: "default",
-      badge: 1
+      content_available: 1
     }
     # Send the notification
     ZeroPush.notify(notification) # => true
