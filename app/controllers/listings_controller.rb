@@ -1,7 +1,11 @@
 class ListingsController < ApplicationController
-
   def create
     Listing.create(listing_params)
+    User.notify
+  end
+
+  def show
+    render json: Listing.last((params[:number] || 10).to_i).reverse
   end
 
   private
