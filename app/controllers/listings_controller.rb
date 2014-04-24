@@ -1,10 +1,6 @@
 class ListingsController < ApplicationController
   def create
-    if Listing.create(listing_params)
-      render nothing: true, status: 200
-    else
-      render nothing: true, status: 500
-    end
+    render text: (Listing.create(listing_params) ? "1" : "0")
     User.notify
   end
 

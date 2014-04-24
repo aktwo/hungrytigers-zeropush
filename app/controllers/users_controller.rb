@@ -1,12 +1,6 @@
-require 'zero_push'
-
 class UsersController < ApplicationController
   def create
-    if User.create(user_params)
-      render nothing: true, status: 200
-    else
-      render nothing: true, status: 500
-    end
+    render text: (User.create(user_params) ? "1" : "0")
   end
 
   private
