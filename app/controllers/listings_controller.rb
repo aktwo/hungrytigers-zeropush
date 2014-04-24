@@ -1,6 +1,6 @@
 class ListingsController < ApplicationController
   def create
-    render text: (Listing.create(listing_params) ? "1" : "0")
+    Listing.create(listing_params)
     User.notify
   end
 
