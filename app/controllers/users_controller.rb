@@ -1,6 +1,11 @@
 class UsersController < ApplicationController
   def create
-    render text: (User.create(user_params) ? "1" : "0")
+    begin
+      User.create(user_params)
+      render text: "1"
+    rescue Exception
+      render text: "0"
+    end
   end
 
   private
