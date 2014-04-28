@@ -1,7 +1,12 @@
 class ListingsController < ApplicationController
   def create
-    Listing.create(listing_params)
-    User.notify
+    begin
+      Listing.create(listing_params)
+      User.notify
+      render text: "1"
+    rescue Exception
+      render text: "-1"
+    end
   end
 
   def show
