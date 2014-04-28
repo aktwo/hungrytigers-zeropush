@@ -34,4 +34,6 @@ ActiveRecord::Schema.define(version: 20140420205327) do
     t.datetime "updated_at"
   end
 
+  add_index "users", ["device_token"], name: "index_users_on_device_token", unique: true, using: :btree
+
 end

@@ -3,8 +3,10 @@ class UsersController < ApplicationController
     begin
       User.create(user_params)
       render text: "1"
-    rescue Exception
+    rescue ActiveRecord::RecordNotUnique
       render text: "0"
+    rescue Exception
+      render text: "-1"
     end
   end
 
