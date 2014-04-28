@@ -20,6 +20,7 @@ ActiveRecord::Schema.define(version: 20140420205327) do
     t.string   "name"
     t.string   "email"
     t.string   "subject"
+    t.string   "building"
     t.text     "body"
     t.decimal  "longitude"
     t.decimal  "latitude"

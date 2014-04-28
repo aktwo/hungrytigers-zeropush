@@ -17,6 +17,6 @@ class ListingsController < ApplicationController
 
   def listing_params
     params[:listing][:timestamp] = params[:listing][:timestamp].to_datetime
-    params.require(:listing).permit(:name, :email, :subject, :body, :longitude, :latitude, :timestamp)
+    params.require(:listing).permit(:name, :email, :subject, :body, :longitude, :latitude, :timestamp, :building)
   end
 end

@@ -4,6 +4,7 @@ class CreateListings < ActiveRecord::Migration
       t.string :name
       t.string :email
       t.string :subject
+      t.string :building
       t.text :body
       t.decimal :longitude
       t.decimal :latitude
