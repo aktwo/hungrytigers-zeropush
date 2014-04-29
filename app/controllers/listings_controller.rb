@@ -9,8 +9,12 @@ class ListingsController < ApplicationController
     end
   end
 
-  def show
+  def show_recent
     render json: Listing.last((params[:number] || 10).to_i).reverse
+  end
+
+  def show_by_id
+    render json: Listing.find(params[:number].to_i)
   end
 
   private

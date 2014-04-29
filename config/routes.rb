@@ -2,7 +2,8 @@ Hungrytigers::Application.routes.draw do
   root 'listings#show'
   post '/new_listing' => 'listings#create'
   post '/new_user' => 'users#create'
-  get '/:number' => 'listings#show'
+  get '/last/:number' => 'listings#show_recent'
+  get '/id/:number' => 'listings#show_by_id'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
