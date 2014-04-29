@@ -2,7 +2,7 @@ class ListingsController < ApplicationController
   def create
     begin
       Listing.create(listing_params)
-      User.notify
+      User.notify("new listing")
       render text: "1"
     rescue Exception
       render text: "-1"
