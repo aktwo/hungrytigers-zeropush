@@ -6,7 +6,7 @@ class User < ActiveRecord::Base
     notification = {
       device_tokens: tokens,
       content_available: true,
-      info: {message: message.to_s}
+      info: {message: message}
     }
     ZeroPush.notify(notification)
   end
