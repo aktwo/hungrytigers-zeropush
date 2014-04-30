@@ -1,5 +1,6 @@
 Hungrytigers::Application.routes.draw do
   root 'static_pages#api'
+  post '/update_listing' => 'listings#update'
   post '/new_listing' => 'listings#create'
   post '/new_user' => 'users#create'
   get '/last/:number' => 'listings#show_recent'
