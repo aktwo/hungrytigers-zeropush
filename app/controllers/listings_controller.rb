@@ -57,6 +57,6 @@ class ListingsController < ApplicationController
   end
 
   def email_params
-    params.require(:email).permit(:subject, :body, :debug)
+    params.require(:email).permit(:subject, :body, :debug, :name)
   end
 end

@@ -1,12 +1,10 @@
 class ListingMailer < ActionMailer::Base
-  default from: "freefood.princeton@gmail.com"
-
-  def listing_email(subject, body, debug)
+  def listing_email(subject, body, debug, name)
     @body = body
     if debug
-      mail(to:"freefood.princeton@gmail.com", subject: ("[FreeFood] " + subject))
+      mail(from: name + " <freefood.princeton@gmail.com>", to:"freefood.princeton@gmail.com", subject: ("[FreeFood] " + subject))
     else
-      mail(to:"freefood@princeton.edu", subject: subject)
+      mail(from: name + " <freefood.princeton@gmail.com>", to:"freefood@princeton.edu", subject: subject)
     end
   end
 end
