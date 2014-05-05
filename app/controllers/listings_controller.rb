@@ -28,6 +28,11 @@ class ListingsController < ApplicationController
   def generate
     subject = email_params[:subject]
     body = email_params[:body]
+    if ListingMailer.listing_email(subject, body).deliver
+      render text: 1
+    else
+      render text: -1
+    end
   end
 
   def show_recent
