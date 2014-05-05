@@ -17,7 +17,7 @@ class ListingsController < ApplicationController
       new_status = (update_status + old_status) / 2
       Listing.update(id, new_status)
       unless new_status.floor == old_status.floor
-        User.notify(id)
+        User.notify({id: id, status: new_status.floor})
       end
       render text: "1"
     rescue Exception
