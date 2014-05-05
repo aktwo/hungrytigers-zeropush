@@ -3,9 +3,9 @@ class ListingsController < ApplicationController
     begin
       Listing.create(listing_params)
       User.notify("new listing")
-      render text: "1"
+      render text: 1
     rescue Exception
-      render text: "-1"
+      render text: 0
     end
   end
 
@@ -19,10 +19,15 @@ class ListingsController < ApplicationController
       unless new_status.floor == old_status.floor
         User.notify({id: id, status: new_status.floor})
       end
-      render text: "1"
+      render text: 1
     rescue Exception
-      render text: "-1"
+      render text: 0
     end
+  end
+
+  def generate
+    subject = email_params[:subject]
+    body = email_params[:body]
   end
 
   def show_recent
@@ -43,5 +48,9 @@ class ListingsController < ApplicationController
 
   def update_params
     params.require(:update).permit(:id, :status)
+  end
+
+  def email_params
+    params.require(:email).permit(:subject, :body)
   end
 end
