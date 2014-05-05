@@ -9,9 +9,11 @@ class CreateListings < ActiveRecord::Migration
       t.text :body
       t.decimal :longitude
       t.decimal :latitude
-      t.datetime :timestamp
+      t.datetime :timestamp, uniqueness: true
 
       t.timestamps
     end
+
+    add_index :listings, :timestamp, unique: true
   end
 end
