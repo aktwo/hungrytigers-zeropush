@@ -29,7 +29,8 @@ class ListingsController < ApplicationController
     subject = email_params[:subject]
     body = email_params[:body]
     debug = email_params[:debug]
-    if ListingMailer.listing_email(subject, body, debug).deliver
+    name = email_params[:name]
+    if ListingMailer.listing_email(subject, body, debug, name).deliver
       render json: {status: 1}
     else
       render json: {status: -1}
