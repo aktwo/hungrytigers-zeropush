@@ -20,8 +20,8 @@ class ListingsController < ApplicationController
         User.notify({id: id, status: new_status.floor})
       end
       render json: {status: 1}
-    rescue Exception
-      render json: {status: 0}
+    rescue => e
+      render json: {status: 0, exception: "#{e}"}
     end
   end
 
