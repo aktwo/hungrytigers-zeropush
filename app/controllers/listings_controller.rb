@@ -13,13 +13,14 @@ class ListingsController < ApplicationController
     begin
       id = update_params[:id].to_i
       puts "ID: #{id}"
-      old_status = Listing.find(id)[:status]
+      listing = Listing.find(id)
+      old_status = listing[:status]
       puts "OLD STATUS: #{old_status}"
       update_status = update_params[:status].to_i
       puts "UPDATE STATUS: #{update_status}"
       new_status = (update_status + old_status) / 2
       puts "NEW STATUS: #{new_status}"
-      result = Listing.update(id, new_status)
+      result = listing.update(status:new_status)
       puts "RESULT: #{result}"
       puts "NEW_STATUS TYPE: #{new_status.class}"
       puts "NEW_STATUS FLOOR: #{new_status.floor}"
