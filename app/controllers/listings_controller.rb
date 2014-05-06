@@ -2,7 +2,7 @@ class ListingsController < ApplicationController
   def create
     begin
       Listing.create(listing_params)
-      User.notify("new listing")
+      User.notify({new_listing: ""})
       render json: {status: 1}
     rescue => e
       render json: {status: 0, exception: "#{e}"}
