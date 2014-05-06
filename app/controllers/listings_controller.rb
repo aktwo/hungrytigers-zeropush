@@ -12,11 +12,17 @@ class ListingsController < ApplicationController
   def update
     begin
       id = update_params[:id].to_i
+      puts "ID: #{id}"
       old_status = Listing.find(id)[:status]
+      puts "OLD STATUS: #{old_status}"
       update_status = update_params[:status].to_i
+      puts "UPDATE STATUS: #{update_status}"
       new_status = (update_status + old_status) / 2
-      Listing.update(id, new_status)
+      puts "NEW STATUS: #{new_status}"
+      result = Listing.update(id, new_status)
+      puts "RESULT: #{result}"
       unless new_status.floor == old_status.floor
+        puts "A DIFFERENCE! NEW STATUS: #{new_status.floor}"
         User.notify({id: id, status: new_status.floor})
       end
       render json: {status: 1}
