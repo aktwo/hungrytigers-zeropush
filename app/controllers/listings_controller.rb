@@ -11,9 +11,9 @@ class ListingsController < ApplicationController
 
   def update
     begin
-      id = update_params[:id]
+      id = update_params[:id].to_i
       old_status = Listing.find(id)[:status]
-      update_status = update_params[:status]
+      update_status = update_params[:status].to_i
       new_status = (update_status + old_status) / 2
       Listing.update(id, new_status)
       unless new_status.floor == old_status.floor
