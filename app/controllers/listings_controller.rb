@@ -17,8 +17,8 @@ class ListingsController < ApplicationController
       update_status = update_params[:status].to_i
       new_status = (update_status + old_status) / 2
       result = listing.update(status:new_status)
-      unless new_status.floor == old_status.floor
-        User.notify({id: id, status: new_status.floor})
+      unless new_status.round == old_status.round
+        User.notify({id: id, status: new_status.round})
       end
       render json: {status: 1}
     rescue => e
