@@ -4,30 +4,20 @@ class ListingsController < ApplicationController
       Listing.create(listing_params)
       User.notify("new listing")
       render json: {status: 1}
-    rescue Exception
-      render json: {status: 0}
+    rescue => e
+      render json: {status: 0, exception: "#{e}"}
     end
   end
 
   def update
     begin
       id = update_params[:id].to_i
-      puts "ID: #{id}"
       listing = Listing.find(id)
       old_status = listing[:status]
-      puts "OLD STATUS: #{old_status}"
       update_status = update_params[:status].to_i
-      puts "UPDATE STATUS: #{update_status}"
       new_status = (update_status + old_status) / 2
-      puts "NEW STATUS: #{new_status}"
       result = listing.update(status:new_status)
-      puts "RESULT: #{result}"
-      puts "NEW_STATUS TYPE: #{new_status.class}"
-      puts "NEW_STATUS FLOOR: #{new_status.floor}"
-      puts "OLD_STATUS TYPE: #{old_status.class}"
-      puts "OLD_STATUS FLOOR: #{old_status.floor}"
       unless new_status.floor == old_status.floor
-        puts "A DIFFERENCE! NEW STATUS: #{new_status.floor}"
         User.notify({id: id, status: new_status.floor})
       end
       render json: {status: 1}

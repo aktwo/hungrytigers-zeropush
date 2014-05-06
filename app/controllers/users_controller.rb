@@ -5,8 +5,8 @@ class UsersController < ApplicationController
       render json: {status: 1}
     rescue ActiveRecord::RecordNotUnique
       render json: {status: 0}
-    rescue Exception
-      render json: {status: -1}
+    rescue => e
+      render json: {status: -1, exception: "#{e}"}
     end
   end
 
